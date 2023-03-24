@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Welcome to My Wishlist!</h1>
+  <p>This is where you can create and manage your wish items.</p>
+
+  <h2>Add a New Wish Item</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Item</button>
+  </form>
+
+  <h2>Current Wish Items</h2>
+  {% if item_list %}
+    <ul>
+      {% for item in item_list %}
+        <li>{{ item.description }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h3>No Wish Items Exist</h3>
+    <hr>
+    {% if items %}
+  <ul>
+    {% for item in items %}
+      <li>{{ item.description }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>No Wish Items Exist</h3>
+  <hr>
+{% endif %}
+<a href="{% url 'item_create' %}" class="pure-button">Add Wish Item</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add Wish Item</h1>
+  <hr>
+  <form class="pure-form pure-form-aligned" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="pure-controls">
+      <button type="submit" class="pure-button pure-button-primary">Add</button>
+      <a href="{% url 'wish_list' %}" class="pure-button">Cancel</a>
+    </div>
+  </form>
+{% endblock %}
+
